@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreJobRequest;
 use App\Models\Job;
-use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
@@ -24,16 +24,8 @@ class JobController extends Controller
         return response()->json($jobs);
     }
 
-    public function store(Request $request)
+    public function store(StoreJobRequest $request)
     {
-        $request->validate([
-            'title'       => 'required|string',
-            'company'     => 'required|string',
-            'location'    => 'required|string',
-            'category'    => 'required|string',
-            'description' => 'required|string',
-        ]);
-
         $job = new Job();
         $job->title        = $request->title;
         $job->company      = $request->company;
