@@ -50,7 +50,7 @@ class JobController extends Controller
 
     public function show($id)
     {
-        $job = Job::findOrFail($id);
+        $job = Job::with('applications')->findOrFail($id);
         return response()->json($job);
     }
 
